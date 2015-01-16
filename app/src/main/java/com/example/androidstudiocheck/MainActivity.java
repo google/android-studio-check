@@ -37,7 +37,7 @@ public class MainActivity extends ActionBarActivity {
         emailText.addTextChangedListener(new TextWatcher() {
             public void onTextChanged(CharSequence s, int start, int count, int after) {
                 String in = emailText.getText().toString();
-                registrationText.setText(rot13(in));
+                registrationText.setText(rot13(in).toUpperCase());
                 if (!rot13(rot13(in)).equals(in)) throw new RuntimeException ("Invalid rot13 conversion");
             }
             public void afterTextChanged(Editable s) { }

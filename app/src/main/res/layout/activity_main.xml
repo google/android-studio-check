@@ -13,7 +13,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Email Address"
+            android:text="Enter Your Registration Email Address"
             android:id="@+id/emailLabel"
             android:layout_gravity="center_horizontal" />
 
@@ -21,14 +21,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textEmailAddress"
-            android:ems="10"
+            android:textAppearance="?android:attr/textAppearanceLarge"
             android:id="@+id/emailText"
             android:layout_gravity="center_horizontal" />
+
+        <Space
+            android:layout_width="50px"
+            android:layout_height="50px" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Registration Code"
+            android:text="Here Is Your Registration Code"
             android:id="@+id/registrationLabel"
             android:layout_gravity="center_horizontal" />
 
@@ -36,8 +40,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:id="@+id/registrationText"
-            android:layout_gravity="center_horizontal" />
+            android:id="@+id/registrationText" />
 
     </LinearLayout>
 
