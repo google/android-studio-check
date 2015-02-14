@@ -3,4 +3,9 @@
 
     <string name="app_name">AndroidStudioCheck</string>
 
+    <string name="found_emulator">ECLAIR</string>
+    <string name="found_wearable">WAFFLE</string>
+    <string name="found_companion">CUPCAKE</string>
+    <string name="found_android">ANDROID</string>
+
 </resources>

@@ -27,19 +27,6 @@ public class MainActivity extends ActionBarActivity {
     public boolean foundWearCompanion;
     public boolean foundAndroidEmulator;
 
-    public String rot13 (String in) {
-        String out = "";
-        for (int i = 0; i < in.length(); ++i) {
-            char c = in.charAt(i);
-            if      ((c >= 'A') && (c <= 'M')) c += 13;
-            else if ((c >= 'a') && (c <= 'm')) c += 13;
-            else if ((c >= 'N') && (c <= 'Z')) c -= 13;
-            else if ((c >= 'n') && (c <= 'z')) c -= 13;
-            out = out + c;
-        }
-        return out;
-    }
-
     class DetectWearTask extends AsyncTask<Void, Void, Void> {
 
         protected Void doInBackground(Void... unused) {
@@ -67,6 +54,7 @@ public class MainActivity extends ActionBarActivity {
                 Log.d("AndroidStudioCheck", "Failed to connect to Play Services for Wearable.API");
                 foundWearDevice = false;
             }
+
             List<Node> connectedNodes =
                     Wearable.NodeApi.getConnectedNodes(mGoogleApiClient).await().getNodes();
             if (connectedNodes.size() >= 1) {
@@ -77,6 +65,7 @@ public class MainActivity extends ActionBarActivity {
                 foundWearDevice = false;
             }
             // Do not update the UI here, it must be done in the UI thread from onPostExecute()
+            Log.d("AndroidStudioCheck", "DetectWearTask completed");
             return null;
         }
 
@@ -87,28 +76,20 @@ public class MainActivity extends ActionBarActivity {
 
     public String getAttributeString() {
         String out = "";
-        if (foundWearCompanion)
-            out = out + "C";
         if (foundWearDevice)
-            out = out + "W";
-        if (foundAndroidEmulator)
-            out = out + "E";
-        if (out.length() > 0)
-            out = "=" + out;
-        return out;
+            return getString(R.string.found_wearable);
+        else if (foundWearCompanion)
+            return getString(R.string.found_companion);
+        else if (foundAndroidEmulator)
+            return getString(R.string.found_emulator);
+        else
+            return getString(R.string.found_android);
     }
 
     public void refreshOutput() {
-        String in = emailText.getText().toString();
-        String out = rot13(in).toUpperCase();
-        // Do not output anything until we have what might be an email address
-        if (((out.length()) > 3) && (out.contains("@"))) {
-            out += getAttributeString();
-        } else {
-            out = "";
-        }
+        String out = getAttributeString();
+        Log.d("AndroidStudioCheck", "Refreshing with registration code [" + out + "]");
         registrationText.setText(out);
-        if (!rot13(rot13(in)).equals(in)) throw new RuntimeException ("Invalid rot13 conversion");
     }
 
     @Override
@@ -117,16 +98,8 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
 
         // Handle to update the registration code as the user enters their email address
-        emailText = (EditText)findViewById(R.id.emailText);
         registrationText = (TextView)findViewById(R.id.registrationText);
-        emailText.addTextChangedListener(new TextWatcher() {
-            public void onTextChanged(CharSequence s, int start, int count, int after) {
-                refreshOutput();
-            }
-            public void afterTextChanged(Editable s) { }
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
-        });
-        emailText.setText("");
+        registrationText.setText("");
 
         // Schedule a background check to see if we have a wear device
         new DetectWearTask().execute();

@@ -10,21 +10,6 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Enter Your Registration Email Address"
-            android:id="@+id/emailLabel"
-            android:layout_gravity="center_horizontal" />
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textEmailAddress"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:id="@+id/emailText"
-            android:layout_gravity="center_horizontal" />
-
         <Space
             android:layout_width="50px"
             android:layout_height="50px" />
