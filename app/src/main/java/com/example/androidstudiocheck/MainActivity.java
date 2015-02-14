@@ -53,16 +53,16 @@ public class MainActivity extends ActionBarActivity {
             if (!result.isSuccess()) {
                 Log.d("AndroidStudioCheck", "Failed to connect to Play Services for Wearable.API");
                 foundWearDevice = false;
-            }
-
-            List<Node> connectedNodes =
-                    Wearable.NodeApi.getConnectedNodes(mGoogleApiClient).await().getNodes();
-            if (connectedNodes.size() >= 1) {
-                Log.d("AndroidStudioCheck", "Found " + (connectedNodes.size() - 1) + " wearables nodes");
-                foundWearDevice = true;
             } else {
-                Log.d("AndroidStudioCheck", "Did not find any wearable nodes");
-                foundWearDevice = false;
+                List<Node> connectedNodes =
+                        Wearable.NodeApi.getConnectedNodes(mGoogleApiClient).await().getNodes();
+                if (connectedNodes.size() >= 1) {
+                    Log.d("AndroidStudioCheck", "Found " + (connectedNodes.size() - 1) + " wearables nodes");
+                    foundWearDevice = true;
+                } else {
+                    Log.d("AndroidStudioCheck", "Did not find any wearable nodes");
+                    foundWearDevice = false;
+                }
             }
             // Do not update the UI here, it must be done in the UI thread from onPostExecute()
             Log.d("AndroidStudioCheck", "DetectWearTask completed");
