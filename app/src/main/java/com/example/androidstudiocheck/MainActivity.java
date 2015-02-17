@@ -29,6 +29,7 @@ public class MainActivity extends ActionBarActivity {
 
     class DetectWearTask extends AsyncTask<Void, Void, Void> {
 
+        @Override
         protected Void doInBackground(Void... unused) {
             foundAndroidEmulator = Build.HARDWARE.contains("goldfish");
             if (foundAndroidEmulator) {
@@ -69,7 +70,8 @@ public class MainActivity extends ActionBarActivity {
             return null;
         }
 
-        protected void onPostExecute() {
+        @Override
+        protected void onPostExecute(Void result) {
             refreshOutput();
         }
     }
