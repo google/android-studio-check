@@ -58,7 +58,7 @@ public class MainActivity extends ActionBarActivity {
                 List<Node> connectedNodes =
                         Wearable.NodeApi.getConnectedNodes(mGoogleApiClient).await().getNodes();
                 if (connectedNodes.size() >= 1) {
-                    Log.d("AndroidStudioCheck", "Found " + (connectedNodes.size() - 1) + " wearables nodes");
+                    Log.d("AndroidStudioCheck", "Found " + connectedNodes.size() + " wearablew nodes");
                     foundWearDevice = true;
                 } else {
                     Log.d("AndroidStudioCheck", "Did not find any wearable nodes");
