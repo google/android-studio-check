@@ -1,12 +1,10 @@
 package com.example.androidstudiocheck;
 
+import android.app.Activity;
 import android.content.pm.PackageManager;
 import android.os.AsyncTask;
 import android.os.Build;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -19,7 +17,7 @@ import com.google.android.gms.wearable.Wearable;
 import java.util.List;
 
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends Activity {
 
     public EditText emailText;
     public TextView registrationText;
